@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const booksRoutes = require('./routes/books');
 const errorController = require('./controllers/error');
 require('dotenv').config({ path: __dirname + '/.env' });
@@ -7,6 +8,7 @@ require('dotenv').config({ path: __dirname + '/.env' });
 const app = express();
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
