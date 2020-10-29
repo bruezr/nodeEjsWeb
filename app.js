@@ -1,8 +1,24 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const booksRoutes = require('./routes/books');
+require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/', booksRoutes);
+
+const databaseUser = process.env.MONGO_USER;
+const databasePsw = process.env.MONGO_PASSWORD;
+const databaseName = process.env.MONGO_DATABASE;
+
+mongoose
+  .connect(
+    `mongodb+srv://${databaseUser}:${databasePsw}@cluster0.gubwk.azure.mongodb.net/${databaseName}`,
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .then(() => {
+    app.listen(process.env.PORT || 3000);
+  })
+  .catch((error) => console.log(error));
