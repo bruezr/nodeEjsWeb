@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const booksRoutes = require('./routes/books');
+const errorController = require('./controllers/error');
 require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
@@ -11,6 +12,8 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use('/', booksRoutes);
+
+app.use(errorController.get404);
 
 app.use((error, req, res, next) => {
   res.status(500).render('500', {
