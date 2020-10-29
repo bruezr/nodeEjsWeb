@@ -9,6 +9,13 @@ app.use(express.json());
 
 app.use('/', booksRoutes);
 
+app.use((error, req, res, next) => {
+  res.status(500).render('500', {
+    pageTitle: 'Error!',
+    path: '/500',
+  });
+});
+
 const databaseUser = process.env.MONGO_USER;
 const databasePsw = process.env.MONGO_PASSWORD;
 const databaseName = process.env.MONGO_DATABASE;
