@@ -7,6 +7,9 @@ const app = express();
 
 app.use(express.json());
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use('/', booksRoutes);
 
 app.use((error, req, res, next) => {
