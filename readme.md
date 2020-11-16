@@ -1,4 +1,4 @@
-# Books Info App 📚 EJS + MongoDB + MVC  
+# Books Info App 📚 NodeJS + Express + EJS + MongoDB + MVC  
 
 Sirve información de libros utilizando templates EJS desde una Mongo DB
 
